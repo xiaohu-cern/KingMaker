@@ -10,18 +10,11 @@ Check out this forked repo with lxplus setup
 
 ```
 git clone --recursive git@github.com:xiaohu-cern/KingMaker.git
-```
-
-*ONLY for the first time*, `setup-lxplus` will install miniconda and relevant libs required in `KingMaker_env.yml` in the current directory.
-
-
-
-*For every time*,
-
-```
 cd KingMaker
-source setup.sh <Analysis Name>
+source setup.sh KingMaker
 ```
+
+**ONLY for the first time**, `setup-lxplus.sh` will install miniconda and relevant libs required in `KingMaker_env.yml` in the current directory. So it will take tens of minutes.
 
 
 ## Setup
