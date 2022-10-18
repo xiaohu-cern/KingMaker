@@ -5,6 +5,29 @@
 KingMaker is the workflow management for producing ntuples with the [CROWN](github.com/KIT-CMS/CROWN) framework. The workflow management is based on [law](github.com/riga/law), which is using [luigi](https://github.com/spotify/luigi) as backend.
 
 ---
+## Setup for lxplus
+*ONLY for the first time*, install miniconda (MAKE SURE that you do not have any existing anaconda or miniconda initialized).
+
+```
+cd /afs/cern.ch/work/x/xiaohu/
+wget https://repo.anaconda.com/miniconda/Miniconda3-py39_4.10.3-Linux-x86_64.sh
+bash Miniconda3-py39_4.10.3-Linux-x86_64.sh -b -p miniconda
+rm Miniconda3-py39_4.10.3-Linux-x86_64.sh
+```
+
+Go to where you would like to checkout the KingMaker repo
+```
+git clone --recursive git@github.com:xiaohu-cern/KingMaker.git
+```
+
+*For every time*,
+
+```
+cd KingMaker
+source setup.sh <Analysis Name>
+```
+
+
 ## Setup
 
 Setting up KingMaker should be straight forward:
