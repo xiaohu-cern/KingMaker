@@ -11,7 +11,8 @@ Check out this forked repo with lxplus setup
 ```
 git clone --recursive git@github.com:xiaohu-cern/KingMaker.git
 cd KingMaker
-source setup.sh KingMaker
+voms-proxy-init --rfc --voms cms -valid 192:00
+source setup-lxplus.sh KingMaker
 ```
 
 **ONLY for the first time**, `setup-lxplus.sh` will install miniconda and relevant libs required in `KingMaker_env.yml` in the current directory. It will also create and activate a new virtual env called `KingMaker` in this case. The process will take tens of minutes.
