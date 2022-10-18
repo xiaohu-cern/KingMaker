@@ -16,6 +16,16 @@ source setup.sh KingMaker
 
 **ONLY for the first time**, `setup-lxplus.sh` will install miniconda and relevant libs required in `KingMaker_env.yml` in the current directory. It will also create and activate a new virtual env called `KingMaker` in this case. The process will take tens of minutes.
 
+Since KingMaker checkouts a new CROWN in the current directory, there probably misses the tau config repo.
+
+```
+cd CROWN
+git clone git@github.com:KIT-CMS/TauAnalysis-CROWN.git analysis_configurations/tau
+cd ..
+```
+
+
+
 
 ## Setup
 
