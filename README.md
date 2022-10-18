@@ -6,19 +6,15 @@ KingMaker is the workflow management for producing ntuples with the [CROWN](gith
 
 ---
 ## Setup for lxplus
-*ONLY for the first time*, install miniconda (MAKE SURE that you do not have any existing anaconda or miniconda initialized).
+Check out this forked repo with lxplus setup
 
-```
-cd /afs/cern.ch/work/x/xiaohu/
-wget https://repo.anaconda.com/miniconda/Miniconda3-py39_4.10.3-Linux-x86_64.sh
-bash Miniconda3-py39_4.10.3-Linux-x86_64.sh -b -p miniconda
-rm Miniconda3-py39_4.10.3-Linux-x86_64.sh
-```
-
-Go to where you would like to checkout the KingMaker repo
 ```
 git clone --recursive git@github.com:xiaohu-cern/KingMaker.git
 ```
+
+*ONLY for the first time*, `setup-lxplus` will install miniconda and relevant libs required in `KingMaker_env.yml` in the current directory.
+
+
 
 *For every time*,
 
