@@ -5,7 +5,7 @@
 KingMaker is the workflow management for producing ntuples with the [CROWN](github.com/KIT-CMS/CROWN) framework. The workflow management is based on [law](github.com/riga/law), which is using [luigi](https://github.com/spotify/luigi) as backend.
 
 ---
-## Setup for lxplus
+## Setup @ lxplus for PKU and all
 Check out this forked repo with lxplus setup
 
 ```
@@ -14,7 +14,7 @@ cd KingMaker
 source setup.sh KingMaker
 ```
 
-**ONLY for the first time**, `setup-lxplus.sh` will install miniconda and relevant libs required in `KingMaker_env.yml` in the current directory. So it will take tens of minutes.
+**ONLY for the first time**, `setup-lxplus.sh` will install miniconda and relevant libs required in `KingMaker_env.yml` in the current directory. It will also create and activate a new virtual env called `KingMaker` in this case. The process will take tens of minutes.
 
 
 ## Setup
