@@ -11,21 +11,20 @@ Check out this forked repo with lxplus setup
 ```
 git clone --recursive git@github.com:xiaohu-cern/KingMaker.git
 cd KingMaker
-voms-proxy-init --rfc --voms cms -valid 192:00
+source setup-ca.sh
 source setup-lxplus.sh KingMaker
 ```
 
-**ONLY for the first time**, `setup-lxplus.sh` will install miniconda and relevant libs required in `KingMaker_env.yml` in the current directory. It will also create and activate a new virtual env called `KingMaker` in this case. The process will take tens of minutes.
+Modifications are made on top the KIT setup, mainly including
+- initialize a x509 proxy file at the current directory for easy passing to condor later, see `setup-ca.sh`
+- adapt the env setup for lxplus in `setup-lxplus.sh` (start luigi by listening to port 8082, patch CROWN/CMakeLists.txt for fixing the git version issue of GitPython, etc.)
+- direct all output to cern eos in `lawluigi_configs/KingMaker_lxplus_law.cfg`
+- setup cern condor properly with `lawluigi_configs/KingMaker_lxplus_luigi.cfg`
+- make the whole law workflow model in `processor-lxplus/` for lxplus env
 
-Since KingMaker checkouts a new CROWN in the current directory, there probably misses the tau config repo.
+**AT the first time**, `setup-lxplus.sh` will install miniconda and relevant libs required in `KingMaker_env.yml` in the current directory. It will also create and activate a new virtual env called `KingMaker` in this case. The process will take tens of minutes.
 
-```
-cd CROWN
-git clone git@github.com:KIT-CMS/TauAnalysis-CROWN.git analysis_configurations/tau
-cd ..
-```
-
-
+NOTE: KingMaker checkouts a new CROWN from the central KIT repo in the current directory. If you have your own CROWN extension, this needs changing.
 
 
 ## Setup
