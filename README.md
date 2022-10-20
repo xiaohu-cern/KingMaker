@@ -5,6 +5,28 @@
 KingMaker is the workflow management for producing ntuples with the [CROWN](github.com/KIT-CMS/CROWN) framework. The workflow management is based on [law](github.com/riga/law), which is using [luigi](https://github.com/spotify/luigi) as backend.
 
 ---
+## Setup @ lxplus for PKU and all
+Check out this forked repo with lxplus setup
+
+```
+git clone --recursive git@github.com:xiaohu-cern/KingMaker.git
+cd KingMaker
+source setup-ca.sh
+source setup-lxplus.sh KingMaker
+```
+
+Modifications are made on top the KIT setup, mainly including
+- initialize a x509 proxy file at the current directory for easy passing to condor later, see `setup-ca.sh`
+- adapt the env setup for lxplus in `setup-lxplus.sh` (start luigi by listening to port 8082, patch CROWN/CMakeLists.txt for fixing the git version issue of GitPython, etc.)
+- direct all output to cern eos in `lawluigi_configs/KingMaker_lxplus_law.cfg`
+- setup cern condor properly with `lawluigi_configs/KingMaker_lxplus_luigi.cfg`
+- make the whole law workflow model in `processor-lxplus/` for lxplus env
+
+**AT the first time**, `setup-lxplus.sh` will install miniconda and relevant libs required in `KingMaker_env.yml` in the current directory. It will also create and activate a new virtual env called `KingMaker` in this case. The process will take tens of minutes.
+
+NOTE: KingMaker checkouts a new CROWN from the central KIT repo in the current directory. If you have your own CROWN extension, this needs changing.
+
+
 ## Setup
 
 Setting up KingMaker should be straight forward:
