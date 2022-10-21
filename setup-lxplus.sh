@@ -155,7 +155,7 @@ action() {
             echo "Setting up CROWN ..."
             # Due to frequent updates CROWN is not set up as a submodule
             if [ ! -d CROWN ]; then
-                git clone --recursive git@github.com:KIT-CMS/CROWN
+                git clone --recursive git@github.com:zhiyuanlcern/CROWN
 
                 # xiaohu: since 202210 GitPython provides a git with version "git" not a number
                 # this fails the check in CMake, thus comment it out

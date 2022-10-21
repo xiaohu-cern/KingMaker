@@ -24,69 +24,43 @@ Modifications are made on top the KIT setup, mainly including
 
 **AT the first time**, `setup-lxplus.sh` will install miniconda and relevant libs required in `KingMaker_env.yml` in the current directory. It will also create and activate a new virtual env called `KingMaker` in this case. The process will take tens of minutes.
 
-NOTE: KingMaker checkouts a new CROWN from the central KIT repo in the current directory. If you have your own CROWN extension, this needs changing.
+The script will clone **CROWN** from zhiyuanlcern's fork. 
 
 
-## Setup
+## Workflow and some neccessary tweaks
 
-Setting up KingMaker should be straight forward:
+After checking out the repo and sourcing setup scripts, you will need to modify the paths specified in `lawluigi_configs/KingMaker_lxplus_law.cfg` and `lawluigi_configs/KingMaker_lxplus_luigi.cfg`
+to your own path.
 
-```sh
-git clone --recursive git@github.com:KIT-CMS/KingMaker.git
-cd KingMaker
-source setup.sh <Analysis Name>
+Note: the default settings `KingMaker_lxplus_luigi.cfg` will run for the mt and tt final states with no systematics.  
+
+## Setting up CROWN
+
+This step makes sure you get the neccessary tau analysis package.
+```
+cd CROWN
+source init.sh tau
 ```
 
-this should setup the environment specified in the luigi.cfg file (located at `lawluigi_configs/<Analysis Name>_luigi.cfg`), which includes all needed packages.
-The environment is sourced from the conda instance located at `/cvmfs/etp.kit.edu/LAW_envs/conda_envs/miniconda/` if possible. 
-If the relevant environment is not available this way, the environment will be set up in a local conda instance.
-The environment files are located at `conda_environments/<Analysis Name>_env.cfg`.
-In addition other files are installed dependding on the analysis.
+## Job submission
 
-A list of available analyses can be found in the `setup.sh` skript or by running 
-```sh
-source setup.sh -l
-```
-
-In addition a `luigid` scheduler is also started if there isn't one running already. 
-
-When setting up an already cloned version, a
-```sh
-source setup.sh <Analysis Name>
-```
-is enough.
----
-# The KingMaker analysis
----
-## Workflow
-
-Currently, the workflow of the KingMaker analysis consists of four distinct tasks:
-
-1. [ProduceSamples](processor/tasks/ProduceSamples.py)
-    The main task, which is used to steer the Production of multiple samples at once
-2. [CROWNRun](processor/tasks/CROWNRun.py)
-    The task used to run CROWN with a specific file
-3. [CROWNBuild](processor/tasks/CROWNBuild.py)
-    This task is used to compile CROWN from source, and create a tarball, which is used by CROWNRun
-4. [ConfigureDatasets](processor/tasks/ConfigureDatasets.py)
-    This task is used to create NanoAOD filelists (if not existent) and readout the needed configuration parameters for each sample. This determines the CROWN tarball that is used for that job
-
----
-## Run KingMaker
 
 Normally, `KingMaker` can be run by running the `ProduceSamples` task. This is done using e.g.
 
 ```bash
 
-law run ProduceSamples --local-scheduler False --analysis config --sample-list samples.txt --workers 1 --production-tag TestingCROWN
+law run ProduceSamples --local-scheduler True --analysis tau --config config --sample-list samples.txt --workers 1 --production-tag TestingCROWN
 
 ```
 The required paramters for the task are:
 
 1. `--local-scheduler False` - With this setting, the luigid scheduler is used  
-2. `--analysis config` - The CROWN config to be used
-3. `--sample-list samples.txt` - path to a txt file, which contains a list of nicks to be processed
-4. `--production-tag TestingCROWN`
+2. `--analysis tau` - The CROWN config to be used (in this case, `tau` analysis)
+3. `--sample-list samples.txt` - path to a txt file, which contains a list of **nicks** to be processed
+4. `--production-tag TestingCROWN` - tag for your submission, changing tag will trigger building the project
+
+Note:
+
 
 Additionally, some optional paramters are beneficial:
 
@@ -95,10 +69,18 @@ Additionally, some optional paramters are beneficial:
 3. `--remove-output 2` - remove all output files
 4. `--CROWNRun-workflow local` - run everything local instead of using HTCondor
 
----
+### Tracking your jobs
+
+Normally, KingMaker will automatically retry failed jobs. In case of errors persisting due to root file not accessible (server glitches, or cms.infn server issuses),
+you can change the problematic files to cms.fnal or comment it out in corresponding yaml file. 
+
+The output log files can be found at:`/afs/cern.ch/user/your-user-path/KingMaker/data/jobs/`.
+The output root files can be found at: `/eos/user/your-user-path/CROWN/ntuples/your-submission-tag/CROWNRun/2018/your-sample-nick/your-final-state`.
+
+
 ## Tracking of Samples
 
-The Samples are tracked and handled via nicks. For each sample, a unique nick has to be used. A collection of all samples and their settings is stored in the `datasets.yaml` file found in the `sample_database` folder. Additionally, a `nick.yaml` is generated for each individual sample, which contains all sample settings and a filelist of all `.root` files belonging to this sample.
+The Samples are tracked and handled via **nicks**. For each sample, a unique nick has to be used. A collection of all samples and their settings is stored in the `datasets.yaml` file found in the `sample_database` folder. Additionally, a `nick.yaml` is generated for each individual sample, which contains all sample settings and a filelist of all `.root` files belonging to this sample.
 
 ```yaml
 campaign: RunIISummer20UL18NanoAODv2
@@ -125,12 +107,27 @@ version: 1
 
 If a sample specific config is not available yet, `ConfigureDatasets` will perform a DAS query to get a filelist for this sample.
 
----
-## Configuration
-
-The default configuration provided in the repository should work out of the box. However some parameters might be changed. The configuration is spread across two files `lawluigi_configs/KingMaker_luigi.cfg` and `lawluigi_configs/KingMaker_law.cfg`. The HTCondor setting can also be found there.
 
 ---
+# The KingMaker analysis 
+---
+## Workflow
+
+Currently, the workflow of the KingMaker analysis consists of four distinct tasks:
+
+1. [ProduceSamples](processor/tasks/ProduceSamples.py)
+    The main task, which is used to steer the Production of multiple samples at once
+2. [CROWNRun](processor/tasks/CROWNRun.py)
+    The task used to run CROWN with a specific file
+3. [CROWNBuild](processor/tasks/CROWNBuild.py)
+    This task is used to compile CROWN from source, and create a tarball, which is used by CROWNRun
+4. [ConfigureDatasets](processor/tasks/ConfigureDatasets.py)
+    This task is used to create NanoAOD filelists (if not existent) and readout the needed configuration parameters for each sample. This determines the CROWN tarball that is used for that job
+
+---
+
+---
+
 
 # The ML_train workflow
 ---
