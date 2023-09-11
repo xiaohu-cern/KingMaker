@@ -46,7 +46,7 @@ class CreateTrainingConfig(Task):
         description="List of processes and their classes used in training"
     )
 
-    all_eras = ["2016", "2017", "2018"]
+    all_eras = ["2016preVFP", "2016postVFP", "2017", "2018"]
 
     # Set other variables and templates used by this class.
     dir_template = "{era}_{channel}_{mass}_{batch}"
@@ -281,7 +281,7 @@ class RunTraining(HTCondorWorkflow, law.LocalWorkflow):
     )
 
     # Set other variables and templates used by this class.
-    all_eras = ["2016", "2017", "2018"]
+    all_eras = ["2016preVFP", "2016postVFP", "2017", "2018"]
     dir_template = "{era}_{channel}_{mass}_{batch}"
     dir_template_in = "{era}_{channel}"
     file_template_shard = "{process}_datashard_fold{fold}.root"
