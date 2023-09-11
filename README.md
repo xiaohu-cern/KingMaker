@@ -34,13 +34,6 @@ to your own path.
 
 Note: the default settings `KingMaker_lxplus_luigi.cfg` will run for the mt and tt final states with no systematics.  
 
-## Setting up CROWN
-
-This step makes sure you get the neccessary tau analysis package.
-```
-cd CROWN
-source init.sh tau
-```
 
 ## Job submission
 
