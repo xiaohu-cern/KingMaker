@@ -21,7 +21,8 @@ class CROWNBuild(Task):
     analysis = luigi.Parameter()
     config = luigi.Parameter()
     htcondor_request_cpus = luigi.IntParameter(default=1)
-    threads = htcondor_request_cpus
+    threads = luigi.Parameter()
+    optimized = luigi.IntParameter(default=0)
     production_tag = luigi.Parameter()
 
     env_script = os.path.join(
@@ -50,7 +51,8 @@ class CROWNBuild(Task):
         _analysis = str(self.analysis)
         _config = str(self.config)
         _shifts = str(self.shifts)
-        _threads = str(self.threads)
+        _threads = str(70)
+        _optimized = str(0)
         # also use the tag for the local tarball creation
         _tag = "{}/CROWN_{}_{}".format(self.production_tag, _analysis, _config)
         _install_dir = os.path.join(str(self.install_dir), _tag)
@@ -97,6 +99,7 @@ class CROWNBuild(Task):
             console.log("Using install directory {}".format(_install_dir))
             console.log("Settings used: ")
             console.log("Threads: {}".format(_threads))
+            console.log("Optimized: {}".format(_optimized))
             console.log("Analysis: {}".format(_analysis))
             console.log("Config: {}".format(_config))
             console.log("Sampletype: {}".format(_sampletypes))
@@ -120,8 +123,11 @@ class CROWNBuild(Task):
                 _build_dir,  # BUILDDIR=$9
                 output.basename,  # TARBALLNAME=$10
                 _threads,  # THREADS=$11
+                _optimized, # OPTIMIZED=$12
             ]
+            console.log("running command:   ", command)
             self.run_command_readable(command)
+            
             console.log(
                 "Copying from local: {}".format(
                     os.path.join(_install_dir, output.basename)
