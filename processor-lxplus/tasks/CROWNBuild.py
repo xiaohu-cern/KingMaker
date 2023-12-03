@@ -13,7 +13,7 @@ class CROWNBuild(Task):
 
     # configuration variables
     scopes = luigi.ListParameter()
-    shifts = luigi.Parameter()
+    shifts = luigi.ListParameter()
     build_dir = luigi.Parameter()
     install_dir = luigi.Parameter()
     eras = luigi.ListParameter()
@@ -50,7 +50,7 @@ class CROWNBuild(Task):
         _scopes = ",".join(self.scopes)
         _analysis = str(self.analysis)
         _config = str(self.config)
-        _shifts = str(self.shifts)
+        _shifts = ",".join(self.shifts)
         _threads = str(70)
         _optimized = str(0)
         # also use the tag for the local tarball creation

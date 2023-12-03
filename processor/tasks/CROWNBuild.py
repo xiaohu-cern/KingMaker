@@ -120,6 +120,7 @@ class CROWNBuild(Task):
                 _build_dir,  # BUILDDIR=$9
                 output.basename,  # TARBALLNAME=$10
                 _threads,  # THREADS=$11
+                "DOPTIMIZED=false"
             ]
             self.run_command_readable(command)
             console.log(
