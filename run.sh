@@ -43,7 +43,7 @@
 #  nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config  --sample-list 16data.txt  --workers 1 --production-tag 16data >> 16data.log &
 #  nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config  --sample-list 16diboson-dyjets-wjets-electroweakboson.txt  --workers 1 --production-tag 16diboson-dyjets-wjets-electroweakboson >> 16diboson-dyjets-wjets-electroweakboson.log &
 #  nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config  --sample-list 16ggh_htautau-ggh_hbb-vbf_htautau-vbf_hbb-rem_htautau-rem_hbb.txt  --workers 1 --production-tag 16ggh_htautau-ggh_hbb-vbf_htautau-vbf_hbb-rem_htautau-rem_hbb >> 16ggh_htautau-ggh_hbb-vbf_htautau-vbf_hbb-rem_htautau-rem_hbb.log &
- nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config  --sample-list signal_missing.txt  --workers 1 --production-tag signal_missing >> signal_missing.log &
+ 
 
 # /afs/cern.ch/user/z/zhiyuanl/KingMaker/build/16singletop-ttbar/CROWN_tau_config
 # ./config_ttbar_2016postVFP 089E6E3A-DFD1-7148-BD6F-F611D22A1B62.root
@@ -56,3 +56,42 @@
 # python3 scripts/ProductionStatus.py --analysis tau --config config --samplelist 16diboson-dyjets-wjets-electroweakboson.txt --tag 16diboson-dyjets-wjets-electroweakboson &
 # python3 scripts/ProductionStatus.py --analysis tau --config config --samplelist 16ggh_htautau-ggh_hbb-vbf_htautau-vbf_hbb-rem_htautau-rem_hbb.txt --tag 16ggh_htautau-ggh_hbb-vbf_htautau-vbf_hbb-rem_htautau-rem_hbb &
 # python3 scripts/ProductionStatus.py --analysis tau --config config --samplelist 16embedding.txt --tag 16embedding &
+
+
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list signal_missing.txt  --workers 1 --production-tag signal_missing-fixed-test >> signal_missing-fixed-test.log &
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list signal_missing_ext1.txt  --workers 1 --production-tag signal_missing-fixed-test >> signal_missing-fixed-test.log &
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list 2022data.txt  --workers 1 --production-tag 2022data >> 2022datatest.log &
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list 2022MC_dyjets.txt  --workers 1 --production-tag 2022MC_dyjets >> 2022MC_dyjets.log &
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list 2022MC_wjets.txt  --workers 1 --production-tag 2022MC_wjets >> 2022MC_wjets.log &
+
+# python3 scripts/ProductionStatus.py --analysis tau --config config --samplelist signal_missing.txt --tag signal_missing-fixed-test
+# python3 scripts/ProductionStatus.py --analysis tau --config config --samplelist 2022data.txt --tag 2022data
+# python3 scripts/ProductionStatus.py --analysis tau --config config --samplelist 2022MC_dyjets.txt --tag 2022MC_dyjets
+# python3 scripts/ProductionStatus.py --analysis tau --config config --samplelist 2022MC_wjets.txt --tag 2022MC_wjets
+
+
+
+
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022MC_dyjets.txt  --workers 1 --production-tag NanoV12_2022MC_dyjets >> NanoV12_2022MC_dyjets.log & 
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022MC_diboson.txt  --workers 1 --production-tag NanoV12_2022MC_diboson >> NanoV12_2022MC_diboson.log & 
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022MC_rem_hbb.txt  --workers 1 --production-tag NanoV12_2022MC_rem_hbb >> NanoV12_2022MC_rem_hbb.log & 
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022MC_ttbar.txt  --workers 1 --production-tag NanoV12_2022MC_ttbar >> NanoV12_2022MC_ttbar.log & 
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022MC_wjets.txt  --workers 1 --production-tag NanoV12_2022MC_wjets >> NanoV12_2022MC_wjets.log & 
+nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022MC_singletop.txt  --workers 1 --production-tag NanoV12_2022MC_singletop >> NanoV12_2022MC_singletop.log & 
+ nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022MC_wg.txt  --workers 1 --production-tag NanoV12_2022MC_wg >> NanoV12_2022MC_wg.log & 
+ nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022MC_hbb.txt  --workers 1 --production-tag NanoV12_2022MC_hbb >> NanoV12_2022MC_hbb.log & 
+ nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022MC_htautau.txt  --workers 1 --production-tag NanoV12_2022MC_htautau >> NanoV12_2022MC_htautau.log & 
+
+
+
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022EEMC_diboson.txt  --workers 1 --production-tag NanoV12_2022EEMC_diboson >> NanoV12_2022EEMC_diboson.log & 
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022EEMC_rem_hbb.txt  --workers 1 --production-tag NanoV12_2022EEMC_rem_hbb >> NanoV12_2022EEMC_rem_hbb.log & 
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022EEMC_ttbar.txt  --workers 1 --production-tag NanoV12_2022EEMC_ttbar >> NanoV12_2022EEMC_ttbar.log & 
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022EEMC_wjets.txt  --workers 1 --production-tag NanoV12_2022EEMC_wjets >> NanoV12_2022EEMC_wjets.log & 
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022EEMC_singletop.txt  --workers 1 --production-tag NanoV12_2022EEMC_singletop >> NanoV12_2022EEMC_singletop.log & 
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022EEMC_wg.txt  --workers 1 --production-tag NanoV12_2022EEMC_wg >> NanoV12_2022EEMC_wg.log & 
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022EEMC_vbf_hbb.txt  --workers 1 --production-tag NanoV12_2022EEMC_vbf_hbb >> NanoV12_2022EEMC_vbf_hbb.log & 
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022EEMC_ggh_hbb.txt  --workers 1 --production-tag NanoV12_2022EEMC_ggh_hbb >> NanoV12_2022EEMC_ggh_hbb.log & 
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022EEMC_ggh_htautau.txt  --workers 1 --production-tag NanoV12_2022EEMC_ggh_htautau >> NanoV12_2022EEMC_ggh_htautau.log & 
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022EEMC_vbf_htautau.txt  --workers 1 --production-tag NanoV12_2022EEMC_vbf_htautau > NanoV12_2022EEMC_vbf_htautau.log & 
+# nohup law run ProduceSamples --local-scheduler False --analysis tau  --config config --sample-list NanoV12_2022EEMC_dyjets.txt  --workers 1 --production-tag NanoV12_2022EEMC_dyjets >> NanoV12_2022EEMC_dyjets.log & 
