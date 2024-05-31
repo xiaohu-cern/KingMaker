@@ -15,9 +15,9 @@ OPTIMIZED=${12}
 set -e
 source $ANALYSIS_PATH/CROWN/init.sh $ANALYSIS
 
-# use a fourth of the machine for compiling
+# use a half of the machine for compiling
 THREADS_AVAILABLE=$(grep -c ^processor /proc/cpuinfo)
-THREADS=$(( THREADS_AVAILABLE / 4 ))
+THREADS=$(( THREADS_AVAILABLE / 2 ))
 echo "Using $THREADS threads for the compilation"
 which cmake
 
