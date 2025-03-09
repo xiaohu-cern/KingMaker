@@ -51,7 +51,7 @@ class CROWNBuild(Task):
         _analysis = str(self.analysis)
         _config = str(self.config)
         _shifts = ",".join(self.shifts)
-        _threads = str(1)
+        _threads = str(8)
         _optimized = str(0)
         # also use the tag for the local tarball creation
         _tag = "{}/CROWN_{}_{}".format(self.production_tag, _analysis, _config)
